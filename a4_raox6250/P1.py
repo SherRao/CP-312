@@ -39,7 +39,6 @@ def main():
     return result;
 
 
-
 def processFile(fileName):
     file = open(fileName, "r+");
     lines = file.readlines();
@@ -47,8 +46,8 @@ def processFile(fileName):
         raise Exception("File must have atleast three lines!");
         exit();
 
-    numbers = lines[0];
+    numbers = lines[0].split(",");
     positives = int(lines[1]);
     negatives = int(lines[2]);
 
-    return ([int(x) for x in numbers], positives, negatives);
+    return [int(x) for x in numbers], positives, negatives;
