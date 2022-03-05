@@ -11,7 +11,7 @@ def main():
     
     result = [];
     sum = 0;
-    i = 0;
+    
     for x in numbers:
         if(minuses > 0):
             sum -= x;
