@@ -1,26 +1,20 @@
 import sys
 
-def main(num_list, value):
-    list_len = len(num_list);
+def main():
+    args = sys.argv;
+    if(len(args) == 0):
+        raise Exception("Program needs a file to run!");
+        exit();
 
-    # Keys = sum value 
-    # Values = minimum number of items to sum (base case 0)
-    value_table = [0];
+    numbers, sum = processFile(str(args[1]));
+    numbers.reverse();
 
-    # Initialize all table values to MAX
-    for i in range(1, value + 1):
-        value_table.append(sys.maxsize);
-
-    # try every combination that is smaller than <value>
-    for i in range(1, value+1):
-        for j in range(0, list_len):
-            if (num_list[j] <= i):
-                tmp = value_table[i-num_list[j]]
-                if ((tmp != sys.maxsize) and (tmp + 1 < value_table[i])):
-                    value_table[i] = tmp + 1
-
-    return value_table;
-
+    for x in numbers:
+        if(sum % x == 0):
+            print(sum // x, "packages of size", x);
+            exit(0);
+        
+    print("No solution found!");
 
 
 def processFile(fileName):
@@ -32,10 +26,8 @@ def processFile(fileName):
 
     numbers = lines[0].split(",");
     sum = int(lines[1]);
-
     return [int(x) for x in numbers], sum;
 
+
 if(__name__ == "__main__"):
-    fileName = str(sys.argv[1]);
-    numbers, sum = processFile(fileName);
-    print(main(numbers, sum));
+    print(main());

@@ -8,7 +8,6 @@ def main():
 
     numbers, pluses, minuses = processFile(str(args[1]));
     numbers.sort();
-    
     result = [];
     sum = 0;
     
@@ -39,8 +38,8 @@ def processFile(fileName):
     numbers = lines[0].strip().split(",");
     positives = int(lines[1].strip());
     negatives = int(lines[2].strip());
-
     return [int(x) for x in numbers], positives, negatives;
+
 
 if(__name__ == "__main__"):
     print(main());
