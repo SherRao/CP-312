@@ -3,17 +3,11 @@ import sys
 def main(num_list, value):
     list_len = len(num_list);
 
-    # We will use the tipycal dynamic programming table construct
-    # the key of the list will be the sum value we want, 
-    # and the value will be the
-    # minimum number of items to sum
-
-    # Base case value = 0, first element of the list is zero   
-    value_table = [0]
+    # Keys = sum value 
+    # Values = minimum number of items to sum (base case 0)
+    value_table = [0];
 
     # Initialize all table values to MAX
-    # for range i use value+1 because python range doesn't include the end
-    # number
     for i in range(1, value + 1):
         value_table.append(sys.maxsize);
 
@@ -25,7 +19,7 @@ def main(num_list, value):
                 if ((tmp != sys.maxsize) and (tmp + 1 < value_table[i])):
                     value_table[i] = tmp + 1
 
-    return value_table[value];
+    return value_table;
 
 
 
@@ -39,4 +33,9 @@ def processFile(fileName):
     numbers = lines[0].split(",");
     sum = int(lines[1]);
 
-    return numbers, sum;
+    return [int(x) for x in numbers], sum;
+
+if(__name__ == "__main__"):
+    fileName = str(sys.argv[1]);
+    numbers, sum = processFile(fileName);
+    print(main(numbers, sum));
