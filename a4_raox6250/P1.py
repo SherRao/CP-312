@@ -1,4 +1,4 @@
-import sys
+import sys;
 
 def main():
     args = sys.argv;
@@ -12,18 +12,18 @@ def main():
     result = [];
     sum = 0;
     i = 0;
-    for i in range(len(numbers)):
+    for x in numbers:
         if(minuses > 0):
-            sum -= numbers[i];
+            sum -= x;
             minuses -= 1;
             result.append("-");
-            result.append(numbers[i]);
+            result.append(x);
 
         else:
-            sum += numbers[i];
+            sum += x;
             pluses -= 1;
             result.append("+");
-            result.append(numbers[i]);
+            result.append(x);
 
     return sum, result;
 
