@@ -7,36 +7,25 @@ def main():
         exit();
 
     numbers, pluses, minuses = processFile(str(args[1]));
-    maxNumbers = pluses + minuses;
     numbers.sort();
-
-    result = "";
+    
+    result = [];
     sum = 0;
-    i = len(numbers) - 1;
-    for n in range(pluses):
-        if(i == len(numbers)):
-            break;
+    i = 0;
+    for i in range(len(numbers)):
+        if(minuses > 0):
+            sum -= numbers[i];
+            minuses -= 1;
+            result.append("-");
+            result.append(numbers[i]);
 
-        result += str(numbers[i]);
-        if(i >= 1):
-            result += " + ";
+        else:
+            sum += numbers[i];
+            pluses -= 1;
+            result.append("+");
+            result.append(numbers[i]);
 
-        sum += numbers[i];
-        i -= 1;
-
-    for n in range(minuses):
-        if(i == len(numbers)):
-            break;
-
-        result += f"({numbers[i]})";
-        if(i >= 1):
-            result += " - ";
-
-        sum -= numbers[i];
-        i -= 1;
-
-    result += " = " + str(sum);
-    return result;
+    return sum, result;
 
 
 def processFile(fileName):
