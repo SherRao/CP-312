@@ -1,3 +1,10 @@
+"""
+CP 312 - Assignment 4
+P1.py
+
+@author Nausher Rao (190906250)
+@author Will Roberts (191023880)
+"""
 import sys;
 
 def main():

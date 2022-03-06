@@ -1,38 +1,25 @@
-from cgitb import lookup
-
-
-def main():
-    args = sys.argv;
-    if(len(args) == 0):
-        raise Exception("Program needs a file to run!");
-        exit();
-
-    numbers, sum = processFile(str(args[1]));
-    numbers.reverse();
-
-    for x in numbers:
-        if(sum % x == 0):
-            print(sum // x, "packages of size", x);
-            exit(0);
-        
-    print("-1 -> No solution found!");
-
 # The key for this dictionary is a tuple of the sizes and the sum
 lookupTable = {};
 
-def minPack(sizes, m):
-    key = (sizes, m);
-    if(key in lookupTable):
-        return lookupTable[(sizes, m)];
+def main(packageSizes, totalSize):
+    # The key for the lookup table for this pair of arguments.
+    key = (packageSizes, totalSize);
 
-    elif(len(sizes) == 0):
+    # Returns the value in the lookup table that has already been calculated.
+    if(key in lookupTable):
+        return lookupTable[key];
+
+    # If there is no solution.
+    elif(len(packageSizes) == 0):
         return -1;
 
-    elif(m % sizes[-1] == 0):
-        result = m // sizes[-1];
-        lookupTable[key] = result
+    # If the total size is a factor of the last package size, then the last package is the solution.
+    elif(totalSize % packageSizes[-1] == 0):
+        result = totalSize // packageSizes[-1];
+        lookupTable[key] = result;
         
         return result;
 
+    # The last package is not the solution -> Lets go to the next last package size.
     else:
-        return minPack(sizes[:-1], m)
+        return main(packageSizes[:-1], totalSize);
