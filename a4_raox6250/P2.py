@@ -14,7 +14,7 @@ def main():
             print(sum // x, "packages of size", x);
             exit(0);
         
-    print("No solution found!");
+    print("-1 -> No solution found!");
 
 
 def processFile(fileName):
