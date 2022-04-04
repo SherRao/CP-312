@@ -53,7 +53,6 @@ def processFile(fileName: str):
     lines = file.readlines()
     if(len(lines) < 2):
         raise Exception("File must have atleast two lines!")
-        exit()
 
     vertices = int(lines[0])
     graph = []
@@ -82,7 +81,6 @@ def salesmanBacktrack(
         for i in range(vertices):
             temp = currentBound
             currPath = graph[currentPath[level - 1]][i]
-
             if(currPath != 0 and not visited[i]):
                 currentWeight = currentWeight + currPath
                 halfMinEdge = minEdge(graph, i, vertices) / 2
